@@ -1,0 +1,9 @@
+{% if humidities %}
+    <ul>
+    {% for humidity in humidities %}
+        <li>{{ humidity.humidity }}  {{ humidity.temp }} {{humidity.log_date}}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No humidities are available.</p>
+{% endif %}
