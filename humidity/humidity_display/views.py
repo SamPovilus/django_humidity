@@ -18,11 +18,12 @@ def pasthours(request, hours):
     return HttpResponse(" looking from %s to %s"% (now,to))
 
 def chart(request):
+    hdata =  Humidity.objects.filter(log_date__second__lt=1)
     humiditydata = \
                    DataPool(
                        series =
                        [{'options' : {
-                           'source': Humidity.objects.filter(log_date__minute=4,log_date__second__lt=1)},
+                           'source': hdata},
                          'terms': [
                              'humidity',
                              'temp',
