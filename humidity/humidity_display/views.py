@@ -1,6 +1,6 @@
 from django.shortcuts import render, render_to_response
 import datetime
-
+import time
 from django.utils import timezone
 from .models import Humidity
 # Create your views here.
@@ -18,7 +18,8 @@ def pasthours(request, hours):
     return HttpResponse(" looking from %s to %s"% (now,to))
 
 def chart(request):
-    hdata =  Humidity.objects.filter(log_date__second__lt=1)
+    hdata =  Humidity.objects.filter()#humidity__gt=0)
+    #hdata = hdata[:50]
     humiditydata = \
                    DataPool(
                        series =
@@ -27,7 +28,10 @@ def chart(request):
                          'terms': [
                              'humidity',
                              'temp',
-                             'log_date']}
+                             #('log_date', lambda d: time.mktime(d.timetuple())),
+                             'log_date'
+                         ]
+                         }
                         ])
     cht = Chart(
         datasource = humiditydata,
@@ -45,9 +49,9 @@ def chart(request):
             'text':"Humidity and Temp data for my apartment"},
          'xAxis':{
              'title' :{
-                 'text': "Time"}}})
-    #return render(request, 'humidity_display/chart.html', cht)
-
+                 'text': "Time"}}},
+#    x_sortf_mapf_mts=(None, lambda i: datetime.datetime.fromtimestamp(i).strftime("%H:%M"), False)
+    )
     return render_to_response('humidity_display/chart.html',{'humiditychart':cht})
 
                   
