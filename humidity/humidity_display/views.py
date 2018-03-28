@@ -3,6 +3,7 @@ import datetime
 import time
 from django.utils import timezone
 from .models import Humidity
+from .models import Pressure
 # Create your views here.
 from django.http import HttpResponse
 from chartit import DataPool, Chart
@@ -11,6 +12,11 @@ def index(request):
     humidities = Humidity.objects.order_by('-log_date')[:200]
     context = {'humidities': humidities}
     return render(request, 'humidity_display/index.html', context)
+
+def pressure_list(request):
+    humidities = Pressures.objects.order_by('-log_date')[:200]
+    context = {'pressures': pressures}
+    return render(request, 'humidity_display/pressure_list.html', context)
 
 def pasthours(request, hours):
     now = str(timezone.now())
