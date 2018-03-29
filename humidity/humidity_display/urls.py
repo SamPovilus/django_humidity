@@ -6,5 +6,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('<int:hours>/',views.pasthours,name='pasthours'),
     path('chart/',views.chart,name='chart'),
-    path('pressures',views.pressure_list,name='pressures'),
+    path('pressures/',views.pressure_list,name='pressure'),
 ]

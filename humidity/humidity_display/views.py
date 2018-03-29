@@ -14,9 +14,9 @@ def index(request):
     return render(request, 'humidity_display/index.html', context)
 
 def pressure_list(request):
-    humidities = Pressures.objects.order_by('-log_date')[:200]
-    context = {'pressures': pressures}
-    return render(request, 'humidity_display/pressure_list.html', context)
+    humidities = Pressure.objects.order_by('-log_date')[:200]
+    context = {'Pressure': Pressure}
+    return render(request, 'pressure_list.html', context)
 
 def pasthours(request, hours):
     now = str(timezone.now())
