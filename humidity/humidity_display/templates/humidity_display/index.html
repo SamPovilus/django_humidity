@@ -1,7 +1,7 @@
 {% if humidities %}
     <ul>
     {% for humidity in humidities %}
-        <li>{{ humidity.humidity }}  {{ humidity.temp }} {{humidity.log_date}}</a></li>
+        <li>{{ humidity.humidity }}  {{ humidity.temp }} {{humidity.log_date}} {{humidity.hostname}}</a></li>
     {% endfor %}
     </ul>
 {% else %}

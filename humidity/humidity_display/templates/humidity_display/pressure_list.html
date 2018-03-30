@@ -1,0 +1,9 @@
+{% if pressures %}
+    <ul>
+    {% for pressure in pressures %}
+        <li>{{ pressure.pressure }}  {{ pressure.temp }} {{pressure.log_date}} {{pressure.hostname}}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No pressures are available.</p>
+{% endif %}
